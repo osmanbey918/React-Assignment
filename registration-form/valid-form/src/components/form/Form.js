@@ -1,271 +1,255 @@
 import React, { useState } from 'react';
-import './Form.css';
+import './Form.css'; // You can put the CSS into a separate file for modularity
 
-function Form()  {
-    const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      age: '',
-      gender: '',
-      number: '',
-      password: '',
-      userId: '',
-      zipCode: '',
-      country: '',
-      address: '',
-      language: ''
-    });
-  
-    const [errors, setErrors] = useState({
-      name: '',
-      email: '',
-      age: '',
-      gender: '',
-      number: '',
-      password: '',
-      userId: '',
-      zipCode: '',
-      country: '',
-      address: '',
-      language: ''
-    });
-  
-    const [isSubmitting, setIsSubmitting] = useState(false);
-  
-    const validate = () => {
-      let valid = true;
-      let newErrors = { ...errors };
-  
-      // Basic validation checks
-      if (!formData.name || formData.name.length < 2) {
-        newErrors.name = 'Name is required and must be at least 2 characters long';
-        valid = false;
-      }
-  
-      if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = 'Email is required and must be a valid email address';
-        valid = false;
-      }
-  
-      if (!formData.age || isNaN(formData.age) || formData.age <= 0 || !Number.isInteger(Number(formData.age))) {
-        newErrors.age = 'Age is required, must be a positive integer';
-        valid = false;
-      }
-  
-      if (!formData.gender) {
-        newErrors.gender = 'Gender is required';
-        valid = false;
-      }
-  
-      if (!formData.number || !/^\d{10}$/.test(formData.number)) {
-        newErrors.number = 'Phone number is required and must be 10 digits long';
-        valid = false;
-      }
-  
-      if (!formData.password || formData.password.length < 6) {
-        newErrors.password = 'Password is required and must be at least 6 characters long';
-        valid = false;
-      }
-  
-      if (!formData.userId || formData.userId.length < 4) {
-        newErrors.userId = 'User ID is required and must be at least 4 characters long';
-        valid = false;
-      }
-  
-      if (!formData.zipCode || !/^\d{5}$/.test(formData.zipCode)) {
-        newErrors.zipCode = 'Zip code is required and must be 5 digits long';
-        valid = false;
-      }
-  
-      if (!formData.country) {
-        newErrors.country = 'Country is required';
-        valid = false;
-      }
-  
-      if (!formData.address || formData.address.length < 10) {
-        newErrors.address = 'Address is required and must be at least 10 characters long';
-        valid = false;
-      }
-  
-      if (!formData.language) {
-        newErrors.language = 'Language is required';
-        valid = false;
-      }
-  
-      setErrors(newErrors);
-      return valid;
-    };
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
+const Form = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobile: '',
+    gender: '',
+    dob: '',
+    address: '',
+    city: '',
+    pin: '',
+    state: '',
+    qualification: '',
+    specialization: {
+      cs: false,
+      it: false,
+      arch: false,
+      telecom: false
+    },
+    password: ''
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First Name is required';
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last Name is required';
+    }
+
+    if (!formData.email.includes('@')) {
+      newErrors.email = 'Invalid email address';
+    }
+
+    if (formData.mobile.length !== 10 || isNaN(formData.mobile)) {
+      newErrors.mobile = 'Mobile number must be 10 digits';
+    }
+
+    if (!formData.gender) {
+      newErrors.gender = 'Gender is required';
+    }
+
+    if (!formData.dob) {
+      newErrors.dob = 'Date of Birth is required';
+    }
+
+    if (!formData.address.trim()) {
+      newErrors.address = 'Address is required';
+    }
+
+    if (!formData.city.trim()) {
+      newErrors.city = 'City is required';
+    }
+
+    if (formData.pin.length !== 6 || isNaN(formData.pin)) {
+      newErrors.pin = 'PIN code must be 6 digits';
+    }
+
+    if (!formData.state.trim()) {
+      newErrors.state = 'State is required';
+    }
+
+    if (!formData.qualification) {
+      newErrors.qualification = 'Qualification is required';
+    }
+
+    if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters long';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === 'checkbox') {
+      setFormData({
+        ...formData,
+        specialization: {
+          ...formData.specialization,
+          [name]: checked
+        }
+      });
+    } else {
       setFormData({
         ...formData,
         [name]: value
       });
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setIsSubmitting(true);
-  
-      if (validate()) {
-        console.log('Form data submitted:', formData);
-        // Handle form submission (e.g., send data to an API)
-        setFormData({
-          name: '',
-          email: '',
-          age: '',
-          gender: '',
-          number: '',
-          password: '',
-          userId: '',
-          zipCode: '',
-          country: '',
-          address: '',
-          language: ''
-        }); // Reset form
-      } else {
-        setIsSubmitting(false);
-      }
-    };
-  
-    return (
-      <div className="form-container">
-        <h1>Extended Form</h1>
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log('Form data:', formData);
+      alert('Form submitted successfully!');
+    } else {
+      console.log('Form validation failed.');
+    }
+  };
+
+  return (
+    <div>
+      <header>
+        <strong className='text'>Data Form Validation</strong>
+      </header>
+      <main>
         <form onSubmit={handleSubmit} className="form">
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
+          <label>First Name:</label>
+          <input
+            type="text"
+            placeholder="Enter your first name"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+          {errors.firstName && <p className="error">{errors.firstName}</p>}
+
+          <label>Last Name:</label>
+          <input
+            type="text"
+            placeholder="Enter your last name"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+          {errors.lastName && <p className="error">{errors.lastName}</p>}
+
+          <label>Email:</label>
+          <input
+            type="email"
+            placeholder="Enter a valid email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
+
+          <label>Mobile:</label>
+          <input
+            type="text"
+            placeholder="Only 10 digits allowed"
+            name="mobile"
+            value={formData.mobile}
+            onChange={handleChange}
+          />
+          {errors.mobile && <p className="error">{errors.mobile}</p>}
+
+          <label>Qualification:</label>
+          <select
+            name="qualification"
+            value={formData.qualification}
+            onChange={handleChange}
+          >
+            <option>Select Qualification</option>
+            <option>Bachelor's</option>
+            <option>Master's</option>
+            <option>PhD</option>
+          </select>
+          {errors.qualification && <p className="error">{errors.qualification}</p>}
+          <label>Gender:</label>
+          <div className="radio">
             <input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            {errors.name && <p className="error-message">{errors.name}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {errors.email && <p className="error-message">{errors.email}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="age">Age</label>
-            <input
-              id="age"
-              name="age"
-              type="number"
-              value={formData.age}
-              onChange={handleChange}
-            />
-            {errors.age && <p className="error-message">{errors.age}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label>Gender</label>
-            <select
+              type="radio"
               name="gender"
-              value={formData.gender}
+              value="Male"
+              checked={formData.gender === 'Male'}
               onChange={handleChange}
-            >
-              <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-            {errors.gender && <p className="error-message">{errors.gender}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="number">Phone Number</label>
+            />
+            <label>Male</label>
+
             <input
-              id="number"
-              name="number"
-              type="tel"
-              value={formData.number}
+              type="radio"
+              name="gender"
+              value="Female"
+              checked={formData.gender === 'Female'}
               onChange={handleChange}
             />
-            {errors.number && <p className="error-message">{errors.number}</p>}
+            <label>Female</label>
           </div>
-  
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            {errors.password && <p className="error-message">{errors.password}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="userId">User ID</label>
-            <input
-              id="userId"
-              name="userId"
-              value={formData.userId}
-              onChange={handleChange}
-            />
-            {errors.userId && <p className="error-message">{errors.userId}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="zipCode">Zip Code</label>
-            <input
-              id="zipCode"
-              name="zipCode"
-              value={formData.zipCode}
-              onChange={handleChange}
-            />
-            {errors.zipCode && <p className="error-message">{errors.zipCode}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="country">Country</label>
-            <input
-              id="country"
-              name="country"
-              value={formData.country}
-              onChange={handleChange}
-            />
-            {errors.country && <p className="error-message">{errors.country}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="address">Address</label>
-            <textarea
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-            />
-            {errors.address && <p className="error-message">{errors.address}</p>}
-          </div>
-  
-          <div className="form-group">
-            <label htmlFor="language">Language</label>
-            <input
-              id="language"
-              name="language"
-              value={formData.language}
-              onChange={handleChange}
-            />
-            {errors.language && <p className="error-message">{errors.language}</p>}
-          </div>
-  
-          <button type="submit" disabled={isSubmitting}>Submit</button>
+          {errors.gender && <p className="error">{errors.gender}</p>}
+
+          <label>Date of Birth:</label>
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+          />
+          {errors.dob && <p className="error">{errors.dob}</p>}
+
+
+          <label>Country:</label>
+          <input
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+          />
+          {errors.state && <p className="error">{errors.state}</p>}
+
+          <label>City:</label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+          />
+          {errors.city && <p className="error">{errors.city}</p>}
+          <label>Address:</label>
+          <textarea
+            cols="60"
+            rows="10"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+          />
+          {errors.address && <p className="error">{errors.address}</p>}
+
+          <label>PIN Code:</label>
+          <input
+            type="text"
+            name="pin"
+            value={formData.pin}
+            onChange={handleChange}
+          />
+          {errors.pin && <p className="error">{errors.pin}</p>}
+
+
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p className="error">{errors.password}</p>}
+
+          <button type="submit">Register</button>
         </form>
-      </div>
-    );
-  }
-  
-  export default  Form;
+      </main>
+    </div>
+  );
+};
+
+export default Form;

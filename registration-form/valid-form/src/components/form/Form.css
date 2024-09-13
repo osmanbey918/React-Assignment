@@ -1,68 +1,164 @@
-/* App.css */
+/* Base Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #b5daff 0%, #dee2e6 100%);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
+/* Header Styles */
+header {
+  background: linear-gradient(135deg, #6dd5fa, #64bef9);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.8em;
+  border: 1px solid rgb(84, 224, 255);
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(81, 177, 255, 0.538);
+}
+.text {
+  font-size: 2.1em;
+  color: white;
+  font-weight: 900;
+  font-family: Tahoma, ;
+  letter-spacing: 0.1em;
+  text-shadow: 4px 4px 7px rgb(26, 193, 230);
+  background: linear-gradient(rgb(30, 181, 223), transparent, rgb(20, 69, 97));
+  /* border: inset 1px rgb(23, 150, 214); */
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px rgb(26, 193, 230);
   
-  h1 {
-    color: #333;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .form {
-    width: 100%;
-    max-width: 600px;
-    background: #f9f9f9;
+}
+/* Form Container */
+main {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  padding: 20px;
+}
+
+/* Form Styles */
+form {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 6px rgb(48, 183, 228), inset 0px 0px 30px rgba(96, 189, 255, 0.655);
+  max-width: 600px;
+  width: 100%;
+  color: #333;
+  border: 1px solid rgb(74, 179, 254);
+}
+
+/* Label Styles */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Input, Select, Textarea Styles */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 1px solid rgb(26, 193, 230);
+   border-color: rgb(26, 193, 230); 
+  box-shadow: 0px 0px 10px rgba(41, 128, 185, 0.5);
+} 
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+/* Radio and Checkbox Styles */
+.radio,
+.checkbox {
+  display: flex;
+  align-items: center;
+  width: 50px;
+  margin-bottom: 15px;
+}
+
+.radio input,
+.checkbox input {
+  margin-right: 8px;
+}
+
+.radio label,
+.checkbox label {
+  margin-right: 15px;
+  font-size: 1rem;
+}
+
+/* Button Styles */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #2980b9, #6dd5fa);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
+  /* Swap colors on hover */
+  box-shadow: 0px 8px 20px rgba(41, 128, 185, 0.5);
+  /* Add glow effect */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  form {
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  input:focus, select:focus, textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
+
   button {
-    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    padding: 15px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 8px;
+  }
+
+  button {
     padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
   }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  .error-message {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
+}
+
+
