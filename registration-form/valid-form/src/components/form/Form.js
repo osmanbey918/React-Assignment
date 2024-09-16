@@ -40,8 +40,8 @@ const Form = () => {
       newErrors.email = 'Invalid email address';
     }
 
-    if (formData.mobile.length !== 10 || isNaN(formData.mobile)) {
-      newErrors.mobile = 'Mobile number must be 10 digits';
+    if (formData.mobile.length < 0 || isNaN(formData.mobile)) {
+      newErrors.mobile = 'Mobile number must be valid';
     }
 
     if (!formData.gender) {
@@ -60,8 +60,8 @@ const Form = () => {
       newErrors.city = 'City is required';
     }
 
-    if (formData.pin.length !== 6 || isNaN(formData.pin)) {
-      newErrors.pin = 'PIN code must be 6 digits';
+    if (formData.pin.length !== 5 || isNaN(formData.pin)) {
+      newErrors.pin = 'PIN code must be 5 digits';
     }
 
     if (!formData.state.trim()) {
@@ -148,7 +148,7 @@ const Form = () => {
           <label>Mobile:</label>
           <input
             type="text"
-            placeholder="Only 10 digits allowed"
+            placeholder="Only digits allowed"
             name="mobile"
             value={formData.mobile}
             onChange={handleChange}
