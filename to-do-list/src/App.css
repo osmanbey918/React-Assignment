@@ -1,0 +1,13 @@
+.App-header {
+  width: 100%;
+  background: skyblue;
+  max-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.to-do-text {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: 'Times New Roman';
+}
