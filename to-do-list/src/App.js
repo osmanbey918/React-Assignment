@@ -1,5 +1,5 @@
 import './App.css';
-import AddStudent from './components/addstudents/Addstudents';
+import Home from './pages/home/Home';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <p className='to-do-text'>Simple To-do List</p>
 
       </header>
-      <AddStudent/>
+      <Home/>
     </div>
   );
 }
