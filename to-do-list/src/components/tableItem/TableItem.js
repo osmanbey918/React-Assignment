@@ -12,6 +12,7 @@ export default function TableItem(props) {
             <td>{props.item.email}</td>
             <td>{props.item.rollNo}</td>
             <button onClick={()=>props.onClickHanlder(props.item.id)} style={{backgroundColor:'gray'}}>Delete</button>
+            <button onClick={()=>props.update(props.item.rollNo)} style={{backgroundColor:'gray'}}>upupup</button>
         </tr>
     )
 }

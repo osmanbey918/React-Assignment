@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as yup from "yup"
+import UpdateStudent from '../updatestudent/UpdateStudent'
 
 export default function AddStudent(props) {
   const [name, setName] = useState('')
@@ -17,7 +18,6 @@ export default function AddStudent(props) {
     // console.log("name", name);
     // console.log("email", email);
     // console.log("rollNo", rollNo);
-
 
 
     let data = {
@@ -47,7 +47,7 @@ export default function AddStudent(props) {
       <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Enter Email" />
       <input onChange={(e) => setRollNo(e.target.value)} type="text" placeholder="Enter Roll No" />
       <button onClick={onClickHandler} style={{ backgroundColor: "gray" }}>Add Student</button>
-      <button onClick={onClickHandler} style={{ backgroundColor: "gray" }}>update Student</button>
+      <UpdateStudent/>
     </div>
   )
 }

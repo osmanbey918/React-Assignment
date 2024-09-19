@@ -29,10 +29,10 @@ export default function Home() {
         },
     ])
 
-    let nums = [10, 20, 30, 40]
-    let result = nums.map((num) => {
-        return <div>sfda</div>
-    })
+    // let nums = [10, 20, 30, 40]
+    // let result = nums.map((num) => {
+    //     return <div>sfda</div>
+    // })
 
     console.log("result", result);
 
@@ -55,7 +55,7 @@ export default function Home() {
     }
     const update = (student) => {
         setData([...data, {
-            id: data.length + 1,
+            id: student.id,
             name: student.name,
             email: student.email,
             rollNo: student.rollNo
@@ -83,6 +83,8 @@ export default function Home() {
                         <TableItem item={item} onClickHanlder={onClickHanlder} />
                     )
                 })}
+
+                {data.}
 
             </table>
 
