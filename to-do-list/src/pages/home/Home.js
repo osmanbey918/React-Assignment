@@ -34,7 +34,7 @@ export default function Home() {
     //     return <div>sfda</div>
     // })
 
-    console.log("result", result);
+    // console.log("result", result);
 
     const onClickHanlder = (id) => {
         console.log("id in parent home", id);
@@ -43,19 +43,19 @@ export default function Home() {
         setData(newdata)
 
     }
+    const update = (updatedInfo) => {
+        let newData = data.map(item => {
+            
+            // Return the item as is if rollNo doesn't match
+            return item;
+        });
+        setData(newData);
+    };
 
     const onAddHandler = (student) => {
         console.log("student in home", student);
         setData([...data, {
             id: data.length + 1,
-            name: student.name,
-            email: student.email,
-            rollNo: student.rollNo
-        }])
-    }
-    const update = (student) => {
-        setData([...data, {
-            id: student.id,
             name: student.name,
             email: student.email,
             rollNo: student.rollNo
@@ -84,7 +84,7 @@ export default function Home() {
                     )
                 })}
 
-                {data.}
+                
 
             </table>
 
