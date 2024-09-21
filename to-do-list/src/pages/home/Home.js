@@ -4,6 +4,7 @@ import { data as constantdata } from '../../constant/data';
 import AddStudent from '../../components/addstudents/Addstudents';
 
 
+
 export default function Home() {
     const [data, setData] = useState([
         {
@@ -28,13 +29,13 @@ export default function Home() {
             class: "BSCS",
         },
     ])
+    const [editMode, setEditMode] = useState(null); // To track the student being edited
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        rollNo: ""
+    });
 
-    // let nums = [10, 20, 30, 40]
-    // let result = nums.map((num) => {
-    //     return <div>sfda</div>
-    // })
-
-    // console.log("result", result);
 
     const onClickHanlder = (id) => {
         console.log("id in parent home", id);
@@ -43,14 +44,25 @@ export default function Home() {
         setData(newdata)
 
     }
-    const update = (updatedInfo) => {
-        let newData = data.map(item => {
-            
-            // Return the item as is if rollNo doesn't match
-            return item;
+    const update = (id) => {
+        const studentToEdit = data.find((student) => student.id === id);
+        setForm({
+            name: studentToEdit.name,
+            email: studentToEdit.email,
+            rollNo: studentToEdit.rollNo,
         });
-        setData(newData);
+        setEditMode(id); // Set editMode to the current student's ID
     };
+    const handleUpdateSubmit = () => {
+        setData(data.map((item) =>
+            item.id === editMode
+                ? { ...item, name: form.name, email: form.email, rollNo: form.rollNo }
+                : item
+        ));
+        setEditMode(null); // Clear edit mode
+        setForm({ name: "", email: "", rollNo: "" }); // Reset form
+    };
+
 
     const onAddHandler = (student) => {
         console.log("student in home", student);
@@ -65,29 +77,52 @@ export default function Home() {
         <div>
             <AddStudent onAddHandler={onAddHandler} />
             <table>
-                <tr>
-                    <th>Id:</th>
-                    <th>
-                        Name:
-                    </th>
-                    <th>
-                        Email:
-                    </th>
-                    <th>
-                        Roll No:
-                    </th>
-                </tr>
-
-                {data.map((item) => {
-                    return (
-                        <TableItem item={item} onClickHanlder={onClickHanlder} />
-                    )
-                })}
-
-                
-
+                <thead>
+                    <tr>
+                        <th>Id:</th>
+                        <th>Name:</th>
+                        <th>Email:</th>
+                        <th>Roll No:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((item) => (
+                        <TableItem
+                            key={item.id}
+                            item={item}
+                            onClickHanlder={onClickHanlder}
+                            update={update}
+                        />
+                    ))}
+                </tbody>
             </table>
 
+            {editMode && (
+                <div>
+                    <h3>Edit Student</h3>
+                    <input
+                        type="text"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        placeholder="Enter Name"
+                    />
+                    <input
+                        type="email"
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="Enter Email"
+                    />
+                    <input
+                        type="text"
+                        value={form.rollNo}
+                        onChange={(e) => setForm({ ...form, rollNo: e.target.value })}
+                        placeholder="Enter Roll No"
+                    />
+                    <button onClick={handleUpdateSubmit}>Update Student</button>
+                </div>
+            )}
         </div>
-    )
+    );
+
+
 }

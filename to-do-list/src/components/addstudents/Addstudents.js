@@ -14,9 +14,6 @@ export default function AddStudent(props) {
   })
 
   const onClickHandler = async () => {
-    // console.log("name", name);
-    // console.log("email", email);
-    // console.log("rollNo", rollNo);
 
 
     let data = {

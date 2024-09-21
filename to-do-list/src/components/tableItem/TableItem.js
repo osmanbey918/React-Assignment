@@ -1,18 +1,13 @@
-
-export default function TableItem(props) {
-    // const onClickHanlder = (id) => {
-    //  alert(id)        
-    // }
-    let mydata = "my data in child"
+export default function TableItem({ item, onClickHanlder, update }) {
     return (
-        <tr>
-        
-            <td>{props.item.id}</td>
-            <td>{props.item.name}</td>
-            <td>{props.item.email}</td>
-            <td>{props.item.rollNo}</td>
-            <button onClick={()=>props.onClickHanlder(props.item.id)} style={{backgroundColor:'gray'}}>Delete</button>
-            <button onClick={()=>props.update(props.item.id)} style={{backgroundColor:'gray'}}>update</button>
-        </tr>
-    )
-}
+      <tr>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.email}</td>
+        <td>{item.rollNo}</td>
+        <button onClick={() => onClickHanlder(item.id)} style={{backgroundColor:'gray'}}>Delete</button>
+        <button onClick={() => update(item.id)} style={{backgroundColor:'gray'}}>Update</button>
+      </tr>
+    );
+  }
+  
