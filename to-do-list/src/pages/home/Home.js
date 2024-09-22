@@ -38,12 +38,11 @@ export default function Home() {
 
 
     const onClickHanlder = (id) => {
-        console.log("id in parent home", id);
-
         let newdata = data.filter(item => item.id !== id)
         setData(newdata)
 
     }
+
     const update = (id) => {
         const studentToEdit = data.find((student) => student.id === id);
         setForm({
@@ -51,7 +50,7 @@ export default function Home() {
             email: studentToEdit.email,
             rollNo: studentToEdit.rollNo,
         });
-        setEditMode(id); // Set editMode to the current student's ID
+        setEditMode(id);
     };
     const handleUpdateSubmit = () => {
         setData(data.map((item) =>
@@ -59,8 +58,8 @@ export default function Home() {
                 ? { ...item, name: form.name, email: form.email, rollNo: form.rollNo }
                 : item
         ));
-        setEditMode(null); // Clear edit mode
-        setForm({ name: "", email: "", rollNo: "" }); // Reset form
+        setEditMode(null);
+        setForm({ name: "", email: "", rollNo: "" });
     };
 
 
@@ -72,17 +71,20 @@ export default function Home() {
             email: student.email,
             rollNo: student.rollNo
         }])
+        setForm({ name: "", email: "", rollNo: "" });
     }
     return (
-        <div>
+        <div className="container">
             <AddStudent onAddHandler={onAddHandler} />
-            <table>
+            <table className="student-table">
                 <thead>
                     <tr>
-                        <th>Id:</th>
-                        <th>Name:</th>
-                        <th>Email:</th>
-                        <th>Roll No:</th>
+                        <th className="table-header">Id</th>
+                        <th className="table-header">Name</th>
+                        <th className="table-header">Email</th>
+                        <th className="table-header">Roll No</th>
+                        <th className="table-header">Delete</th>
+                        <th className="table-header">Update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,36 +94,43 @@ export default function Home() {
                             item={item}
                             onClickHanlder={onClickHanlder}
                             update={update}
+                            className="table-row"
                         />
                     ))}
                 </tbody>
             </table>
 
             {editMode && (
-                <div>
-                    <h3>Edit Student</h3>
+                <div className="edit-form">
+                    <h3 className="edit-title">Edit Student</h3>
                     <input
                         type="text"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Enter Name"
+                        className="input-field"
                     />
                     <input
                         type="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="Enter Email"
+                        className="input-field"
                     />
                     <input
                         type="text"
                         value={form.rollNo}
                         onChange={(e) => setForm({ ...form, rollNo: e.target.value })}
                         placeholder="Enter Roll No"
+                        className="input-field"
                     />
-                    <button onClick={handleUpdateSubmit}>Update Student</button>
+                    <button onClick={handleUpdateSubmit} className="btn btn-update">
+                        Update Student
+                    </button>
                 </div>
             )}
         </div>
+
     );
 
 

@@ -37,12 +37,15 @@ export default function AddStudent(props) {
   }
 
   return (
-    <div>
-      <span style={{ backgroundColor: 'red', color: 'white' }}>{error}</span> <br />
-      <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter Name" />
-      <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Enter Email" />
-      <input onChange={(e) => setRollNo(e.target.value)} type="text" placeholder="Enter Roll No" />
-      <button onClick={onClickHandler} style={{ backgroundColor: "gray" }}>Add Student</button>
+    <div className='add'>
+      <div className='form'>
+        <span className='error'>{error}</span> <br />
+        <h3>Student Data</h3>
+        <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter Name" />
+        <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Enter Email" />
+        <input onChange={(e) => setRollNo(e.target.value)} type="text" placeholder="Enter Roll No" />
+        <button onClick={onClickHandler} className='btn addbtn'>Add Student</button>
+      </div>
     </div>
   )
 }
