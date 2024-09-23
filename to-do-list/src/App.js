@@ -1,16 +1,17 @@
 import './App.css';
-import Home from './pages/home/Home';
+// import Home from './pages/home/Home';
+import store from './store/store';
+import { Provider } from 'react-redux';
+import  Counter  from './components/counter/Count';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className='to-do-text'>Student Record</p>
-
-      </header>
-      <Home/>
-    </div>
-  );
+  
+    <Provider store={store}>
+      <Counter />
+    </Provider>
+    
+  )
 }
 
 export default App;
