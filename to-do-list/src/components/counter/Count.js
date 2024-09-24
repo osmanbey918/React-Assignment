@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '../../store/slices/counterSlice'
+import { increment, decrement, reset } from '../../store/slices/counterSlice'
 // import styles from './Counter.module.css'
 
 export default function Counter() {
@@ -23,6 +23,7 @@ export default function Counter() {
         >
           Decrement
         </button>
+        <button onClick={() => dispatch(reset())}>reset</button>
       </div>
     </div>
   )
