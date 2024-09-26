@@ -1,11 +1,12 @@
 import React from "react";
-import DeleteItem from "./components/counter/DeleteItem";
+import Counter from "./components/counter/Counter";
+import './App.css'
 
   function App() {
     return (
       <div className="App">
         <header className="App-header">
-         <DeleteItem/>
+        <Counter/>
         </header>
       </div>
     );

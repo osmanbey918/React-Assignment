@@ -1,21 +1,25 @@
-// reducer.js
 import { createSlice } from '@reduxjs/toolkit';
-import initialData from '../../constant/data';
-
 
 const initialState = {
-    data: initialData,
+    // data: initialData,
+    value: 0,
 };
 
 const dataSlice = createSlice({
     name: 'data',
     initialState,
     reducers: {
-        removeItem: (state, action) => {
-            state.data = state.data.filter(item => item.id !== action.payload);
+        decrement: (state) => {
+            state.value -= 1
+        },
+        increment: (state) => {
+            state.value += 1
+        },
+        reset: (state) => {
+            state.value = 0
         },
     },
 });
 
-export const { removeItem } = dataSlice.actions;
+export const { increment, decrement,reset } = dataSlice.actions;
 export default dataSlice.reducer;

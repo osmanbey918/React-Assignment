@@ -1,0 +1,100 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Counter app container */
+  .counter-app {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+  }
+  
+  /* Counter display */
+  .counter-display {
+    margin-bottom: 30px;
+  }
+  
+  /* Counter value */
+  .counter-value {
+    font-size: 60px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Buttons container */
+  .counter-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Button styles */
+  .counter-btn {
+    flex: 1;
+    padding: 15px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Increment button */
+  .increment-btn {
+    background: linear-gradient(135deg, #56ab2f, #a8e063); /* Green gradient */
+  }
+  
+  /* Decrement button */
+  .decrement-btn {
+    background: linear-gradient(135deg, #e53935, #e35d5b); /* Red gradient */
+  }
+  
+  /* Reset button */
+  .reset-btn {
+    background: linear-gradient(135deg, #36d1dc, #5b86e5); /* Blue gradient */
+  }
+  
+  /* Button hover effects */
+  .counter-btn:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Button active effects */
+  .counter-btn:active {
+    transform: translateY(1px);
+  }
+  .counter-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  /* Responsive design */
+  @media (max-width: 400px) {
+    .counter-app {
+      width: 100%;
+      padding: 20px;
+    }
+    
+    .counter-value {
+      font-size: 48px;
+    }
+  
+    .counter-btn {
+      font-size: 14px;
+      padding: 12px;
+    }
+  }
+  
