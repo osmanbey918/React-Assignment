@@ -41,7 +41,7 @@ function Form() {
         <input type="email" name="email" value={formData.email} onChange={handleChange} />
       </div>
       <button type="submit">Submit</button>
-
+      <p>{setFormData}</p>
       {formError && (
         <div>
           {formError.map((error, index) => (
