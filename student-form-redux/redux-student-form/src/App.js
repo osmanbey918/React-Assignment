@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import Add from "./components/add/Add";
+import "./App.css"
 import Form from "./components/form/Form";
 function App() {
   return (

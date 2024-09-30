@@ -1,0 +1,82 @@
+/* Form Container */
+form {
+    background-color: #ffffff; /* White background for clarity */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the form */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: border-color 0.3s ease-in-out; /* Smooth transition for border */
+    border: 2px solid #ddd; /* Default border color */
+    max-width: 400px; /* Maximum width for better compactness */
+    margin: auto; /* Center the form */
+  }
+  
+  /* Animated Border Effect */
+  form:focus-within {
+    border-color: #6c63ff; /* Border color when input is focused */
+  }
+  
+  /* Input Fields */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 8px; /* Padding inside input */
+    margin: 10px 0; /* Margin between inputs */
+    border: 2px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s ease; /* Smooth border color transition */
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  input:focus {
+    border-color: #6c63ff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  /* Submit Button */
+  button {
+    background-color: #6c63ff; /* Primary color */
+    color: white; /* Text color */
+    padding: 8px 12px; /* Button padding */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  button:hover {
+    background-color: #5a54e2; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  /* Submitted Data Table */
+  table {
+    width: 100%; /* Full width */
+    margin-top: 20px; /* Margin above table */
+    border-collapse: collapse; /* Collapse borders */
+  }
+  
+  th, td {
+    padding: 10px; /* Padding in cells */
+    text-align: left; /* Left-align text */
+    border-bottom: 1px solid #ddd; /* Bottom border for rows */
+    font-size: 14px; /* Smaller font size */
+  }
+  
+  th {
+    background-color: #6c63ff; /* Header background color */
+    color: white; /* Header text color */
+  }
+  
+  tr:hover {
+    background-color: #f2f2f2; /* Highlight row on hover */
+  }
+  
+  /* Error Message */
+  p {
+    color: red; /* Red color for error messages */
+    font-weight: bold; /* Bold text */
+    margin-top: 10px; /* Space above error message */
+  }
+  
