@@ -6,7 +6,7 @@ export const fetchProducts = createAsyncThunk(
         const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
         console.log("data in fetchProducts action", data);
-        
+
         return data;
     }
 );
@@ -38,16 +38,16 @@ const productSlice = createSlice({
         },
     },
     extraReducers: builder => {
-           
-            builder.addCase(fetchProducts.fulfilled, (state, action) => {
-                console.log("fetch products in reducer", action.payload);
-                
-                state.products = action.payload;
-            },)
-          }
-        
+
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
+            console.log("fetch products in reducer", action.payload);
+
+            state.products = action.payload;
+        },)
+    }
+
 });
 
 
-export const { setProducts,deleteProduct } = productSlice.actions;
+export const { setProducts, deleteProduct } = productSlice.actions;
 export default productSlice.reducer;
