@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// Fetch cart data (if needed)
 export const fetchCart = createAsyncThunk(
     "cart/fetchCart",
     async () => {
@@ -15,18 +16,31 @@ const cartSlice = createSlice({
     initialState: {
         carts: [],
     },
-    reducers: {},
-        extraReducers: builder => {
+    reducers: {
+        addtocart: (state, action) => {
+            const { id, title, price, image } = action.payload;
+            const existingProduct = state.carts.find((item) => item.id === id);
+            if (!existingProduct) {
+                state.carts.push({ id, title, price, image });
+            } else {
+                alert("This product is already in your cart.");
+            }
+        },
+        deleteCart: (state, action) => {
 
+            state.carts = state.carts.filter(
+                cart => cart.id !== action.payload
+            );
+        },
+
+    },
+    extraReducers: (builder) => {
         builder.addCase(fetchCart.fulfilled, (state, action) => {
             console.log("fetch carts in reducer", action.payload);
-
             state.carts = action.payload;
-        },)
+        });
+    },
+});
 
-    }
-})
-
-
-export const { deleteProduct } = cartSlice.actions;
+export const { addtocart, deleteCart } = cartSlice.actions;
 export default cartSlice.reducer;
