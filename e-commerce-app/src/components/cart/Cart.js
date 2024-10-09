@@ -13,7 +13,7 @@ export default function Cart() {
     const carts = useSelector(store => store.cartSlice.carts)
 
     return (
-        <div>
+        <div className="cart-container">
             <h1>My Cart</h1>
             <div className='container'>
                 {carts.length > 0 ? (
@@ -22,11 +22,16 @@ export default function Cart() {
                             <div className='img-container'>
                                 <img style={{ width: 100 }} src={item.image} className='prodimg' />
                             </div>
-                            <h2 className='ptitle'>title{item.title}</h2>
+                            <h2 className='ptitle'>{item.title}</h2>
                             <p className='pprice'>Price: ${item.price}</p>
-                            <label>Quantity</label>
-                            <input type="number" min={1} max={5} value={value} onChange={(e) => setValue(e.target.value)}/>
-                            <button onClick={() => deleteCartbyid(item.id)} className='delete'>deleteProduct</button>
+                            <div className="priceoff">
+                                <label className="dis">Quantity: </label>
+                                <input type="number" min={1} max={5} value={value} onChange={(e) => setValue(e.target.value)} className="input" />
+                            </div>
+                            <div className="priceoff">
+                                <button onClick={() => deleteCartbyid(item.id)} className='delete'>🗑️</button>
+                                <button className='cart'>Buy Now</button>
+                            </div>
 
                         </div>
                     ))
@@ -34,5 +39,6 @@ export default function Cart() {
                     <p>Your cart is empty</p>
                 )}
             </div>
-        </div>)
+        </div>
+    )
 }

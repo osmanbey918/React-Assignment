@@ -8,7 +8,6 @@ function App() {
     <Provider store={store}>
       <Navbar/>
       <Product/>
-      <p>jhoidhlskjm</p>
       
     </Provider>
   );
