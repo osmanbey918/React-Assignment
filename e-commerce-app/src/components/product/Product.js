@@ -9,10 +9,10 @@ export default function Product() {
   useEffect(() => { dispatch(fetchProducts()) }, [])
 
   const products = useSelector(store => store.productSlice.products)
-  const deleteProductbyid = (id) => { dispatch(deleteProduct(id)) }
-  const onClickGetcart = () => {
-    dispatch(fetchCart())
-  }
+  // const deleteProductbyid = (id) => { dispatch(deleteProduct(id)) }
+  // const onClickGetcart = () => {
+  //   dispatch(fetchCart())
+  // }
   const addCart = (id, title, price, image) => {
     dispatch(addtocart({ id, title, price, image }))
   }
@@ -27,12 +27,6 @@ export default function Product() {
       {/* <button onClick={onClickGetcart}>Get cart</button> */}
       <br />
       <div>
-        {/* {obj.map(i => {
-          return (<div key={i.id}><p>{i.title}</p><p>{i.price}</p>
-            <button onClick={() => addCart(i.title, i.price)} className='delete'>addCart</button>
-
-          </div>)
-        })} */}
 
       </div>
       <div className='container'>

@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// Fetch cart data (if needed)
 export const fetchCart = createAsyncThunk(
     "cart/fetchCart",
     async () => {
-        const response = await fetch("https://fakestoreapi.com/carts/user/2");
+        const response = await fetch("https://fakestoreapi.com/carts/users");
         const data = await response.json();
         console.log("data in fetchProducts action", data);
         return data;
@@ -36,7 +35,7 @@ const cartSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCart.fulfilled, (state, action) => {
-            console.log("fetch carts in reducer", action.payload);
+            // console.log("fetch carts in reducer", action.payload);
             state.carts = action.payload;
         });
     },

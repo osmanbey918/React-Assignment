@@ -32,15 +32,15 @@ const productSlice = createSlice({
                 existingProduct.category = category;
                 existingProduct.image = image;
             }
-        },
+        },//working remianing
         setProducts: (state, action) => {
             state.products = action.payload;
-        },
+        },//remaining
     },
     extraReducers: builder => {
 
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            console.log("fetch products in reducer", action.payload);
+            // console.log("fetch products in reducer", action.payload);
 
             state.products = action.payload;
         },)
