@@ -3,12 +3,13 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import Navbar from './components/navbar/Navbar';
 import Product from './components/product/Product'
+import Footer from './components/contact/Contact';
 function App() {
   return (
     <Provider store={store}>
       <Navbar/>
       <Product/>
-      
+      <Footer/>
     </Provider>
   );
 }
